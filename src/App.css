@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.preview .jumbotron h1, .jumbotron .h1 {
+    font-size: 30px;
+}
