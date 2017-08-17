@@ -1,6 +1,6 @@
 ## White Label Webshop
 
-I’ve built a small React app then enables customers to create several versions of a webshop (landing page). The app follows fairly standard `create-react-app` best practices, so you can just clone into the repository, run `npm install` and start the dev server via `npm start`.
+I’ve built a small React app then enables customers to create several versions of a webshop (landing page). The app follows fairly standard `create-react-app` best practices, so you can just clone into the repository, run `npm install && npm start`.
 
 I’ve focused mainly on changing colors and text, as these were features many users wanted. Since there’s no backend available, I’ve not implemented image upload for logos yet.
 
