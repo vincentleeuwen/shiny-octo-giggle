@@ -1,34 +1,39 @@
-import { action, observable } from 'mobx';
+import { action, extendObservable } from 'mobx';
 
 export default class Webshop {
   id = null;
-  @observable brand = 'Awesome store';
-  @observable usp = 'Webshop';
-  @observable tagline = 'Check out these awesome products';
-  @observable bannerColor = '#ecf0f1';
-  @observable bannerTextColor = '#2c3e50';
-  @observable buttonColor = '#1abc9c';
-  @observable navbarColor = '#2c3e50';
 
-  @action updateBrand(brand) {
-    this.brand = brand;
-  }
-  @action updateUsp(usp) {
-    this.usp = usp;
-  }
-  @action updateTagline(tagline) {
-    this.tagline = tagline;
-  }
-  @action updateBannerColor(color) {
-    this.bannerColor = color;
-  }
-  @action updateBannerTextColor(color) {
-    this.bannerTextColor = color;
-  }
-  @action updateButtonColor(color) {
-    this.buttonColor = color;
-  }
-  @action updateNavbarColor(color) {
-    this.navbarColor = color;
+  constructor() {
+    extendObservable(this, {
+      brand: 'Awesome store',
+      usp: 'Awesome',
+      tagline: 'Check out our awesome collection',
+      bannerColor: '#ebebeb',
+      bannerTextColor: '#2c3e50',
+      buttonColor: '#1abc9c',
+      navbarColor: '#2c3e50',
+
+      updateBrand: action((brand) => {
+        this.brand = brand;
+      }),
+      updateUsp: action((usp) => {
+        this.usp = usp;
+      }),
+      updateTagline: action((tagline) => {
+        this.tagline = tagline;
+      }),
+      updateBannerColor: action((color) => {
+        this.bannerColor = color;
+      }),
+      updateBannerTextColor: action((color) => {
+        this.bannerTextColor = color;
+      }),
+      updateButtonColor: action((color) => {
+        this.buttonColor = color;
+      }),
+      updateNavbarColor: action((color) => {
+        this.navbarColor = color;
+      }),
+    });
   }
 }

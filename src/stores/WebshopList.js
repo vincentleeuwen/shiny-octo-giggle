@@ -1,14 +1,16 @@
-import { action, observable, computed } from 'mobx';
+import { action, extendObservable } from 'mobx';
 
 class WebshopList {
-  @observable webshops = [];
-
-  @action addWebshop(webshop) {
-    this.webshops.push(webshop);
-  }
-
-  @computed get newId() {
-    return this.webshops.length + 1;
+  constructor() {
+    extendObservable(this, {
+      webshops: [],
+      addWebshop: action((webshop) => {
+        this.webshops.push(webshop);
+      }),
+      get newId() {
+        return this.webshops.length + 1;
+      },
+    });
   }
 }
 
