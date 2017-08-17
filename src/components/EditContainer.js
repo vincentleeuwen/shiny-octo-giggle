@@ -3,65 +3,72 @@ import queryString from 'query-string';
 import { observer, PropTypes } from 'mobx-react';
 import EditWebshop from './EditWebshop';
 
-@observer
-export default class EditContainer extends React.Component {
+const EditContainer = observer(class EditContainer extends React.Component {
+  static propTypes = {
+    webshop: PropTypes.observableObject.isRequired,
+  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      webshop: props.webshop,
+    };
+  }
+
   handleInputChange = (e) => {
     switch (e.target.name) {
       case 'brand':
-        this.props.webshop.brand = e.target.value;
+        this.state.webshop.brand = e.target.value;
         break;
       case 'usp':
-        this.props.webshop.usp = e.target.value;
+        this.state.webshop.usp = e.target.value;
         break;
       case 'tagline':
-        this.props.webshop.tagline = e.target.value;
+        this.state.webshop.tagline = e.target.value;
         break;
       default:
         break;
     }
   }
   loadPreview = () => {
-    const params = queryString.stringify(this.props.webshop);
+    const params = queryString.stringify(this.state.webshop);
     window.open(`/preview?${params}`, '_blank');
   }
 
   updateBannerColor = (color) => {
-    this.props.webshop.updateBannerColor(color.hex);
+    this.state.webshop.updateBannerColor(color.hex);
   };
   updateBannerTextColor = (color) => {
-    this.props.webshop.updateBannerTextColor(color.hex);
+    this.state.webshop.updateBannerTextColor(color.hex);
   }
   updateButtonColor = (color) => {
-    this.props.webshop.updateButtonColor(color.hex);
+    this.state.webshop.updateButtonColor(color.hex);
   }
   updateNavbarColor = (color) => {
-    this.props.webshop.updateNavbarColor(color.hex);
+    this.state.webshop.updateNavbarColor(color.hex);
   }
 
   render() {
     return (
       <div>
         <EditWebshop
-          shopId={this.props.webshop.id}
-          navbarColor={this.props.webshop.navbarColor}
+          shopId={this.state.webshop.id}
+          navbarColor={this.state.webshop.navbarColor}
           updateNavbarColor={this.updateNavbarColor}
-          bannerColor={this.props.webshop.bannerColor}
+          bannerColor={this.state.webshop.bannerColor}
           updateBannerColor={this.updateBannerColor}
-          bannerTextColor={this.props.webshop.bannerTextColor}
+          bannerTextColor={this.state.webshop.bannerTextColor}
           updateBannerTextColor={this.updateBannerTextColor}
-          buttonColor={this.props.webshop.buttonColor}
+          buttonColor={this.state.webshop.buttonColor}
           updateButtonColor={this.updateButtonColor}
           handleInputChange={this.handleInputChange}
-          brand={this.props.webshop.brand}
-          usp={this.props.webshop.usp}
-          tagline={this.props.webshop.tagline}
+          brand={this.state.webshop.brand}
+          usp={this.state.webshop.usp}
+          tagline={this.state.webshop.tagline}
           loadPreview={this.loadPreview}
         />
       </div>
     );
   }
-}
-
-EditContainer.propTypes = {
-  webshop: PropTypes.observableObject.isRequired,
-};
+});
+export default EditContainer;

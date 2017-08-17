@@ -11,8 +11,7 @@ import WebshopList from '../stores/WebshopList';
 import EditContainer from './EditContainer';
 import Topnavbar from './Topnavbar';
 
-@observer
-export default class EditList extends React.Component {
+export default observer(class EditList extends React.Component {
   createWebshop= () => {
     const webshop = new Webshop();
     webshop.id = WebshopList.newId;
@@ -48,4 +47,4 @@ export default class EditList extends React.Component {
       </div>
     );
   }
-}
+});
